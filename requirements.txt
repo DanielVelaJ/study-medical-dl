@@ -1,0 +1,6 @@
+open_clip_torch
+torchmetrics
+transformers
+requests
+tqdm
+datasets 

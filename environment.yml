@@ -1,0 +1,26 @@
+name: open-pmc-playground
+channels:
+  - pytorch
+  - nvidia          # provides pytorch-cuda
+  - conda-forge
+dependencies:
+  # Core
+  - python=3.12
+  - pytorch=2.3
+  - torchvision=0.18
+  - torchaudio=2.3
+  # GPU runtime
+  - pytorch-cuda=12.1         # pulls the right cudatoolkit
+  # SciPy stack
+  - numpy
+  - scipy
+  - scikit-learn
+  # Imaging / plotting
+  - pillow
+  - matplotlib
+  # Notebook tooling
+  - jupyter
+  - notebook
+  - ipykernel
+  # Give pip a slot for pure-Python extras
+  - pip 

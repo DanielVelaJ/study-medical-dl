@@ -1,0 +1,6 @@
+---
+description: Whenever writing import statements when generating code
+globs: 
+alwaysApply: false
+---
+Always prefer absolute imports over relative imports. Remember we are using the src layout. 
