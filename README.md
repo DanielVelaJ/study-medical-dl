@@ -1,45 +1,61 @@
 # Medical Deep Learning Studies
 
-This repository contains mini-study sessions for medical deep learning research.
+This repository contains mini-study sessions for medical deep learning research. Each study is self-contained and designed for reproducible research.
 
 ## 📁 Study Sessions
 
-### `01_roco_mmd/` - MMD Comparison: OPEN-PMC-18M vs PMC-6M Embeddings
+### `01_roco_mmd/` - Medical CLIP Models MMD Analysis
 
-Replicates Figure 4 intuition from Alejandro Lozano's biomedical V-L pipeline paper ([arXiv 2506.02738](https://arxiv.org/abs/2506.02738)). Demonstrates that **data quality reshapes the representation space** in biomedical vision-language models using Maximum Mean Discrepancy (MMD) and permutation testing.
+Replicates Figure 4 from Baghbanzadeh et al.'s "Open-PMC-18M" paper ([arXiv:2506.02738](https://arxiv.org/abs/2506.02738)). Uses **Maximum Mean Discrepancy (MMD)** to demonstrate that different CLIP models create statistically different embedding distributions on biomedical images.
 
-**Key Question**: Are embedding clouds from high-quality vs noisy training data statistically different?
+**Key Question**: Do medical-specialist CLIP models create significantly different embedding distributions compared to general-purpose models?
 
 **Quick Start**:
 ```bash
 cd 01_roco_mmd
-poetry install
-poetry run python main.py
+# Open notebook.ipynb and run all cells
+# Everything is self-contained with automatic setup
 ```
 
 **What it does**:
-- Loads [BiomedCLIP](https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224) (OPEN-PMC-18M) and simulates [PMC-6M baseline](https://github.com/WeixiongLin/PMC-CLIP)
-- Encodes 200 ROCO test images with both models  
-- Computes MMD² and runs 100-shuffle permutation test
-- Visualizes results with t-SNE + statistical significance
+- Compares [BiomedCLIP](https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224) (medical specialist) vs [OpenAI CLIP](https://github.com/mlfoundations/open_clip) (general purpose)
+- Encodes 200 ROCO medical images with both models  
+- Computes MMD with RBF kernel and runs 100-permutation statistical test
+- Visualizes results with t-SNE and significance testing
 
-**Expected output**: `MMD² = 0.001234, p-value = 0.010` → Significant difference!
+**Expected output**: Statistically significant differences (p < 0.01) between embedding distributions
 
 ---
 
-## 🛠️ Development Setup
+## 🛠️ Setup
 
-This repo uses Poetry for dependency management and follows absolute import patterns:
+Each study is designed to be self-contained. We recommend using conda for environment management:
 
+### Option 1: Conda Environment (Recommended)
 ```bash
-# Install Poetry if you haven't already
-curl -sSL https://install.python-poetry.org | python3 -
+# Create and activate environment with binary dependencies (PyTorch, CUDA)
+conda env create -f environment.yml
+conda activate biomedical-clip
 
-# Navigate to any study folder and install
+# Install remaining packages with pip
+pip install -r requirements.txt
+
+# Navigate to study folder
 cd 01_roco_mmd/
-poetry install
-poetry run python main.py
+# Open notebook.ipynb and run all cells
 ```
+
+### Option 2: Manual Installation
+```bash
+# Prerequisites for 01_roco_mmd
+pip install torch torchvision open-clip-torch datasets scikit-learn matplotlib seaborn tqdm
+
+# Navigate to study folder
+cd 01_roco_mmd/
+# Open the notebook and run all cells
+```
+
+**Note**: The notebook handles data downloading, model loading, and analysis automatically.
 
 ## 📋 Planned Studies
 
@@ -51,18 +67,18 @@ poetry run python main.py
 ## 📚 References
 
 Core papers driving these studies:
-- **OPEN-PMC-18M**: Lozano et al., [arXiv 2506.02738](https://arxiv.org/abs/2506.02738)
+- **OPEN-PMC-18M**: Baghbanzadeh et al., [arXiv 2506.02738](https://arxiv.org/abs/2506.02738)
 - **BiomedCLIP**: Zhang et al., ["BiomedCLIP: A Multimodal Biomedical Foundation Model"](https://arxiv.org/abs/2303.00915)
-- **PMC-CLIP**: Lin et al., ["PMC-CLIP: Contrastive Language-Image Pre-training using Biomedical Documents"](https://arxiv.org/abs/2303.07240)
+- **OpenAI CLIP**: Radford et al., ["Learning Transferable Visual Representations"](https://arxiv.org/abs/2103.00020)
 - **MMD Testing**: Gretton et al., ["A Kernel Two-Sample Test"](https://jmlr.org/papers/v13/gretton12a.html)
 
-## 🔬 Future Studies
+## 🔬 Study Design Philosophy
 
-Additional mini-studies will be added to explore various aspects of medical deep learning:
-- Vision-language model evaluation
-- Biomedical image analysis techniques
-- Clinical data processing methods
-- Multi-modal learning approaches
+Each study session follows these principles:
+- **Self-contained**: All code in a single notebook with automatic setup
+- **Reproducible**: Detailed documentation and fallback mechanisms
+- **Educational**: Step-by-step explanations with academic references
+- **Practical**: Ready-to-run implementations with real datasets
 
 ## 📄 License
 
