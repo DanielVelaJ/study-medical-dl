@@ -1,26 +1,31 @@
-name: open-pmc-playground
+# Clean Environment for Biomedical CLIP Project
+# Test this works, then add more packages gradually
+
+name: biomedical-clip
 channels:
   - pytorch
-  - nvidia          # provides pytorch-cuda
+  - nvidia
   - conda-forge
+  - defaults
+
 dependencies:
-  # Core
+  # Core Python
   - python=3.12
-  - pytorch=2.3
-  - torchvision=0.18
-  - torchaudio=2.3
-  # GPU runtime
-  - pytorch-cuda=12.1         # pulls the right cudatoolkit
-  # SciPy stack
+  
+  # PyTorch - Let conda resolve compatible versions
+  - pytorch
+  - torchvision  
+  - torchaudio
+  - pytorch-cuda=12.1
+  
+  # Basic scientific computing
   - numpy
   - scipy
-  - scikit-learn
-  # Imaging / plotting
-  - pillow
   - matplotlib
-  # Notebook tooling
+  
+  # Development tools
   - jupyter
-  - notebook
-  - ipykernel
-  # Give pip a slot for pure-Python extras
+  - ipython
+  
+  # Package manager
   - pip 
