@@ -1,0 +1,33 @@
+---
+description: installing packages, dependency management
+globs: 
+alwaysApply: false
+---
+# ==== Environment & Dependency Rule (DL 2025 dual-file pattern) ====
+
+1. This repo tracks **two** spec files only:
+     • environment.yml  ←  Conda-managed, binary-heavy deps (Python, CUDA, PyTorch,…)
+     • requirements.txt ←  pip-managed, pure-Python / fast-moving libs (open_clip_torch, tqdm,…)
+
+2. **Never list the same package in both files.**  
+   - GPU / compiled libs → environment.yml  
+   - pure-Python wheels → requirements.txt
+
+3. To add / update a **Conda** package  
+   3-a.  `conda install <pkg> [-c channel]` inside the env  
+   3-b.  `conda env export --from-history > environment.yml`  (records only explicit installs)
+
+4. To add / update a **pip** package  
+   4-a.  `pip install <pkg>` inside the env  
+   4-b.  `pip list --format=freeze > requirements.txt`   (or `pip freeze > …`)
+
+5. Always run Conda installs **before** pip installs in a fresh env.
+
+6. Re-create locally or in CI with  
+       conda env create -f environment.yml  
+       conda activate <env>  
+       pip install -r requirements.txt
+
+7. Commit *only* environment.yml & requirements.txt; never commit the actual env folder.
+# ===============================================================
+

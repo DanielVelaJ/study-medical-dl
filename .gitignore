@@ -1,12 +1,8 @@
-# Byte-compiled / optimized / DLL files
+# ==== Python & Conda ====
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -26,21 +22,83 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+# ==== Conda Environment ====
+# Only track environment.yml and requirements.txt, not the actual env
+conda-env/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+# ==== Data & Datasets ====
+# ROCO and other medical datasets (often large)
+**/data/
+**/datasets/
+*.h5
+*.hdf5
+*.parquet
+*.feather
+*.pkl
+*.pickle
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
+# ==== Model Artifacts ====
+# Pre-trained models, checkpoints, weights
+**/models/
+**/checkpoints/
+**/weights/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+*.model
+
+# ==== Results & Outputs ====
+# Generated figures, logs, cached results
+**/results/
+**/outputs/
+**/logs/
+**/plots/
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+*.npz
+*.npy
+
+# ==== Jupyter ====
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# ==== IDEs & Editors ====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ==== OS ====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==== MLflow & Experiment Tracking ====
+mlruns/
+.mlflow/
+wandb/
+
+# ==== Cache & Temp ====
+.cache/
+.pytest_cache/
 .coverage
+.tox/
 .coverage.*
 .cache
 nosetests.xml
@@ -48,9 +106,13 @@ coverage.xml
 *.cover
 *.py,cover
 .hypothesis/
-.pytest_cache/
-cover/
 
+# ==== HuggingFace Cache ====
+.transformers_cache/
+.huggingface/
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
 # Translations
 *.mo
 *.pot

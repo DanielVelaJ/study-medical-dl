@@ -1,0 +1,52 @@
+# Dataset cache (too large for version control)
+data/
+*.arrow
+*.parquet
+
+# Model cache (downloaded automatically)
+.cache/
+models/
+
+# Jupyter notebook outputs and temporary files
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.env
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Large output files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+embeddings_*.pt
+results_*.json
+
+# Keep these important files:
+# !notebook.ipynb
+# !README.md
+# !*.pdf 

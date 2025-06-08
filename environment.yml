@@ -1,0 +1,31 @@
+# Clean Environment for Biomedical CLIP Project
+# Test this works, then add more packages gradually
+
+name: biomedical-clip
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Core Python
+  - python=3.12
+  
+  # PyTorch - Let conda resolve compatible versions
+  - pytorch
+  - torchvision  
+  - torchaudio
+  - pytorch-cuda=12.1
+  
+  # Basic scientific computing
+  - numpy
+  - scipy
+  - matplotlib
+  
+  # Development tools
+  - jupyter
+  - ipython
+  
+  # Package manager
+  - pip 
